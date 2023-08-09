@@ -1,47 +1,40 @@
-# Astro Starter Kit: Minimal
+# スルッとFediverseShare（仮）
+## 特徴
 
+MastodonやMisskeyなどのFediverseに読んでいたWebページを共有するには、既存のmisskeyshareや、などでは、1回以上サーバのアドレスを記入する必要がありました。さらに、misskeyshareや、など様々なサービスが開発され、提供されてきましたが、それぞれでサーバのアドレスを入力する必要があるために共有が面倒でした。
+
+そこでこの「するっとFediverseShare」ではブラウザ拡張に1度入力するだけで対応するサイトであればインストール後の初期設定1回だけですぐに共有ができるようになります。
+
+## 使いかた
+
+### ユーザ
+
+最初に[ここ](https://github.com/eniehack/thrutto-fedishare-webext)からブラウザ拡張をインストールします。
+
+ブラウザ拡張の設定を開き、普段使っているサーバーのURL（例: `https://misskey.io`、`https://fedibird.com`など）を入力し、保存を押します。
+
+### サイト管理者
+
+以下のように`head`に`script`タグを、`body`タグの中に`fediverse-share`タグを入れれば共有ボタンが動きます。
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        ...
+        <script src="./fediverse.js" type="module"></script>
+    </head>
+    <body>
+        ...
+        <fediverse-share title="するっとFediverseShare"></fediverse-share>
+    </body>
+</html>
 ```
-npm create astro@latest -- --template minimal
-```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+詳しい使い方は[こちら]をご覧ください。
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 開発者向け
 
-## 🚀 Project Structure
+このプロダクトはブラウザ拡張が`window.fediverse`を定義し、その詳細を公開することで共有サイトの規格を統一し、UXの向上を図るために製作されました。
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:3000`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+`window.fediverse`の規格に関しては[ブラウザ拡張のページに](https://github.com/eniehack/thrutto-fedishare-webext)詳細があります。
