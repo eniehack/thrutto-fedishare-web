@@ -22,5 +22,6 @@
     "lit": "^2.8.0",
     "rollup": "^3.28.0",
     "tslib": "^2.6.1"
-  }
+  },
+  "packageManager": "pnpm@8.6.9"
 }
