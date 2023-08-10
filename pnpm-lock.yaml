@@ -8,6 +8,9 @@ dependencies:
   astro:
     specifier: ^2.10.3
     version: 2.10.3
+  shiki:
+    specifier: ^0.14.3
+    version: 0.14.3
 
 devDependencies:
   '@rollup/plugin-commonjs':

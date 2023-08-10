@@ -12,7 +12,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^2.10.3"
+    "astro": "^2.10.3",
+    "shiki": "^0.14.3"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.3",
