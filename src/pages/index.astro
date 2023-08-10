@@ -81,6 +81,22 @@ const site_name = "スルッとFediShare";
                         </section>
                     </section>
                     <section>
+                        <h2>仕組み</h2>
+                        <p>
+                            ここでは、スルッとFediShareがどのように動作するのかについて説明します。主に、開発者を対象とします。
+                        </p>
+                        <p>何故ブラウザ拡張が必要かという話ですが、これはブラウザ拡張を導入した際に、Webページを読み込んだときにどのような動きをするのか、特にブラウザ拡張とページ上の共有ボタンの連携に着目して話してみます。</p>
+                        <ol>
+                            <li><code>window.fediverse</code>を挿入する<a href="https://github.com/eniehack/thrutto-fedishare-webext/blob/trunk/src/provider.ts">スクリプト</a>を拡張機能にある<a href="https://github.com/eniehack/thrutto-fedishare-webext/blob/trunk/src/content_script/insert_provider.ts">content script</a>がページ内に挿入する</li>
+                            <li>他のスクリプト同様に実行される</li>
+                            <li>スルッとFediShareのボタンをclickした際にはじめて<code>window.fediverse.getShareLink()</code>を呼び出す</li>
+                            <li>ブラウザ拡張が共有用リンクを作成し、サイト側のスクリプトに共有用リンクを返却する</li>
+                            <li>共有用リンクをwindow.openで開く</li>
+                        </ol>
+                        <p>スルッとFediShareのボタン自体は<a href="https://developer.mozilla.org/ja/docs/Web/API/Web_components/Using_custom_elements">custom elements</a>と、それを利用したJavsScriptのUIフレームワーク<a href="https://lit.dev">lit</a>によって作られています。</p>
+                        <section></section>
+                    </section>
+                    <section>
                         <h2>各種リンク</h2>
                         <ul>
                             <li><a href="https://github.com/eniehack/thrutto-fedishare-web">GitHub</a></li>
