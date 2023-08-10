@@ -7,23 +7,33 @@ import terser from "@rollup/plugin-terser";
 export default [
     {
         input: "lib/fediverse.ts",
-        output: {
-            dir: "public",
-            sourcemap: true,
-        },
+        output: [
+            {
+                file: "public/thrutto-fedishare.js",
+                format: "module",
+                sourcemap: true,
+            },
+            {
+                file: "public/thrutto-fedishare.min.js",
+                format: "module",
+                plugins: [
+                    terser({
+                        ecma: 2019,
+                        module: true,
+                        warnings: true
+                    })
+                ]
+            }
+        ],
         plugins: [
             ts({
                 compilerOptions: {
                     lib: ["es2019", "dom"],
-                    experimentalDecorators: true
+                    experimentalDecorators: true,
+                    useDefineForClassFields: false,
                 }
             }),
-            resolve({ jsnext: true }),
-            terser({
-                ecma: 2019,
-                module: true,
-                warnings: true
-            })
+            resolve(),
         ]
     }
 ]
