@@ -55,11 +55,11 @@ export class FediverseShareButton extends LitElement {
 
     private async _openLink(ev: Event) {
         if (typeof window.fediverse === "undefined") {
-            ("window.fediverse is undefined.");
+            window.alert("window.fediverse is undefined.");
             return;
         }
         let test = await window.fediverse.getShareLink(this.title, this.url);
-        window.open(test, "", "noopener,noreferrer");
+        window.open(test);
         console.log(test);
     }
 
