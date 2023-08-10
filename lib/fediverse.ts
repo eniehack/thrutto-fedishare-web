@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 import { html, css, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
@@ -7,9 +8,10 @@ type fediverse = {
     },
     getShareLink(text: string, url?: string): Promise<string>;
 }
-
+declare global {
 interface Window {
     fediverse: fediverse
+}
 }
 
 const getShareLink = (title: string, url: string): Promise<string> => {
@@ -30,8 +32,8 @@ const getShareLink = (title: string, url: string): Promise<string> => {
 @customElement("fediverse-share")
 export class FediverseShareButton extends LitElement {
     static styles = css`
-        a {
-            display: block;
+        #credit {
+            font-size: 10px;
         }
     `;
 
@@ -43,8 +45,11 @@ export class FediverseShareButton extends LitElement {
 
     render() {
         return html`
-            <button @click="${this._openLink}">share</button>
-            <p>powered by スルっとFediverseShare</p>
+            <button @click="${this._openLink}">
+                <img width=16 height=16 src="./fediverse.png" />
+                share
+            </button>
+            <p id="credit">powered by <a href="https://github.com/eniehack/thrutto-fedishare-web">スルっとFediverseShare</a></p>
         `;
     }
 
@@ -54,7 +59,7 @@ export class FediverseShareButton extends LitElement {
             return;
         }
         let test = await window.fediverse.getShareLink(this.title, this.url);
-        window.open(test, "mozillaTab");
+        window.open(test, "", "noopener,noreferrer");
         console.log(test);
     }
 
