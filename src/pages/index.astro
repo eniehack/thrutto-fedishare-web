@@ -1,20 +1,102 @@
 ---
+import { Code } from "astro/components";
+import Opengraph from "../includes/opengraph.astro";
+const title = "top";
+const site_name = "スルッとFediShare";
 ---
 
 <html lang="ja">
 	<head>
 		<meta charset="utf-8" />
+        <title>{title} - {site_name}</title>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
+        <Opengraph
+            url={Astro.url}
+            ogp_type="website"
+            title={title}
+            description="FediverseにWebページを共有するためのブラウザ拡張またはそのインタフェースの規格です。このページではその導入方法について解説しています。"
+            site_name={site_name}
+            />
 		<script src="./thrutto-fedishare.js" type="module"></script>
 	</head>
 	<body>
-        <article>
-            <h1>するっとFediverseShare</h1>
-            <section>
-                <h2>usage</h2>
-            </section>
-		    <fediverse-share title="するっとFediverseShare"></fediverse-share>
-        </article>
+        <header></header>
+        <main>
+            <article>
+                <section>
+                    <h1>スルッとFediShare</h1>
+                    <p>FediverseにWebページを共有するためのブラウザ拡張またはそのインタフェースの規格です。</p>
+                    <section>
+                        <h2>対応ソフトウェア</h2>
+                        <section>
+                            <h3>ブラウザ拡張</h3>
+                            <ul>
+                                <li>Firefox</li>
+                                <li>Chrome/Chromium系（未テスト）</li>
+                            </ul>
+                        </section>
+                        <section>
+                            <h3>共有先Fediverseサーバ</h3>
+                            <ul>
+                                <li>Misskey</li>
+                                <li>Mastodon（未テスト）</li>
+                            </ul>
+                            <p>Misskeyの<code>/share</code>のように、その他のサーバも投稿の共有ページを持っていれば容易に対応できます。</p>
+                        </section>
+                    </section>
+                    <section>
+                        <h2>使い方</h2>
+                        <section>
+                            <h3>ユーザ向け</h3>
+                            <p>ここでは、サイトにあるこの共有ボタンを使えるようになるまでを説明します。</p>
+                            <p>必要なことは以下の2つです:
+                                <ol>
+                                    <li>最初に<a href="https://github.com/eniehack/thrutto-fedishare-webext">ここ</a>からブラウザ拡張をインストールします。</li>
+                                    <li>ブラウザ拡張の設定を開き（Firefoxの場合はShit+Ctrl+Aでアドオン設定を開き、個別の拡張、ここではfedishareをクリックする）、普段使っているサーバーのURL（例: <code>https://misskey.io</code>、<code>https://fedibird.com</code>など）を入力し、保存を押します。</li>
+                                </ol>
+                            </p>
+                        </section>
+                        <section>
+                            <h3>サイト運営者向け</h3>
+                            <p>ここでは、サイトにこの共有ボタンを設置する方法を説明します。</p>
+                            <p>必要なことは以下の2つです:
+                                <ol>
+                                    <li>scriptタグの作成</li>
+                                    <li>body内で<code>fediverse-share</code>を呼び出す</li>
+                                </ol>
+                            </p>
+                            以上を踏まえると、最小限の構成は以下の通りになります。
+                            <Code lang="html"
+                                code={`
+                                    <!DOCTYPE html>
+                                    <html>
+                                        <head>
+                                            <script src="https://eniehack.github.io/thrutto-fedishare-web/thrutto-fedishare.min.js" type="module"></script>
+                                        </head>
+                                        <body>
+                                            <fediverse-share></fediverse-share>
+                                        </body>
+                                    </html>`} />
+                        </section>
+                    </section>
+                    <section>
+                        <h2>各種リンク</h2>
+                        <ul>
+                            <li><a href="https://github.com/eniehack/thrutto-fedishare-web">GitHub</a></li>
+                            <li><a href="https://github.com/eniehack/thrutto-fedishare-webext">ブラウザ拡張機能GitHub</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>デモ</h2>
+                        <fediverse-share title="するっとFediverseShare"/>
+                    </section>
+                </section>
+                
+            </article>
+        </main>
+        <footer>
+            <p id="copyright">copyright &copy; 2023- <a href="https://eniehack.net/~eniehack">eniehack</a>.</p>
+        </footer>
 	</body>
 </html>

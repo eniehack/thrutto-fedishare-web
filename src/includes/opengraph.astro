@@ -1,0 +1,11 @@
+---
+const { url, ogp_type, title, description, site_name, image } = Astro.props;
+---
+
+<meta property="og:url" content=`${url}` />
+<meta property="og:type" content={ogp_type} />
+<meta property="og:title" content=`${ title } - ${site_name}` />
+<meta property="og:description" content={ description } />
+<meta property="og:site_name" content={ site_name } />
+<meta property="twitter:card" content="summary"/>
+{image && <meta property="og:image" content={ image } />}
