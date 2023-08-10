@@ -27,15 +27,12 @@ jobs:
         run: pnpm install
 
       - name: Build library
-        run: pnpm run lib:build
-
-      - name: Build website
         run: pnpm run build
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: "./public"
+          path: "./dist"
 
   deploy:
      if: ${{ github.ref == 'refs/heads/trunk' }}

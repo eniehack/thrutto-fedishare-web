@@ -5,9 +5,10 @@
   "scripts": {
     "lib:dev": "rollup -c -w",
     "lib:build": "rollup -c",
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
+    "web:dev": "astro dev",
+    "web:build": "astro build",
+    "web:preview": "astro preview",
+    "build": "pnpm run lib:build && pnpm run web:build",
     "astro": "astro"
   },
   "dependencies": {
